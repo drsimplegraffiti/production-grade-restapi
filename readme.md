@@ -321,4 +321,39 @@ Then run the following command:
 npm run seed
 ```
 
+### Part 4
+### A
+In this part 4, which will be the final part of this video, we will create the following:
+- Deploy what we have to heroku with a script
+  - we will create bash file called `deploy.sh` in the root directory of our project
+  - Then we run the chmod command to make the file executable `chmod +x deploy.sh`
+  - Create a script in the package.json file to deploy the app to heroku `heroku-postbuild` script
 
+&nbsp;
+
+### B
+- Create a User
+  - DAL (Data Access Layer) or the Service Layer (this is where we will write our CRUD operations), it basically contains the logic for interacting with the database.
+  - DTO (Data Transfer Object) (this is where we will define the shape of the data we want to send to the client) or we simple define interfaces for our models.
+  - Create a validation class to validate the user input before saving it to the database using joi
+  - Encrypt our data using bcrypt before saving it to the database (utils class)
+  - Generate access/refresh tokens using jsonwebtoken and save the refresh token in the database (utils class)
+  - Controller (this is where we will write our route handlers), but this will be abstracted to the routes folder.
+  - Fire and forget using emit and on with eventemitter in nodejs while sending the email to the user
+
+  &nbsp;
+
+### C
+- Login a User
+  - authenticate a user
+  - create a middleware to check if the user is authenticated before accessing a protected route
+
+  &nbsp;
+
+### D
+- Misc
+  - Create a middleware logger to log the request and response of the user
+  - Debugging in VSCode with breakpoints
+  - Log with winston logger but we will save our logs in a  separate db using winston-mysql or winston-prisma
+  - Add pagination and filtering to our get all users route
+  - Call external api using axios and save the data to the database
