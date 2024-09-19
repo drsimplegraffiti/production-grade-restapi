@@ -357,3 +357,81 @@ In this part 4, which will be the final part of this video, we will create the f
   - Log with winston logger but we will save our logs in a  separate db using winston-mysql or winston-prisma
   - Add pagination and filtering to our get all users route
   - Call external api using axios and save the data to the database
+
+
+#### Code
+- DAL
+- Create a folder called `services` and create a class called UserService
+```typescript
+import prisma from "../db";
+import hashPassword from "../utils/hashPassword";
+
+class UserService {
+  public static async createUser(data: IUser) {
+    return await prisma.user.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        password: await hashPassword(data.password),
+        profilepic: data.profilepic,
+        isVerified: data.isVerified,
+        isBlocked: data.isBlocked,
+        role: data.role,
+      },
+    });
+  }
+
+  public static async getUserByEmail(email: string) {
+    return await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+  }
+}
+```
+
+create a folder called `dto` and create an interface called `IUser`
+```typescript
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  profilepic?: string;
+  isVerified?: boolean;
+  isBlocked?: boolean;
+  role?: string;
+}
+
+```
+
+create a folder called `validation` and create a class called `UserValidation`
+```typescript
+import Joi from "joi";
+
+class UserValidation {
+    // user registration validation
+    public static userRegistrationValidation(data: IUser) {
+        const schema = Joi.object({
+            name: Joi.string().required(),
+            email: Joi.string().email().required(),
+            password: Joi.string().min(6).required(),
+            profilepic: Joi.string(),
+            isVerified: Joi.boolean(),
+            isBlocked: Joi.boolean(),
+            role: Joi.string()
+        });
+
+        return schema.validate(data);
+    }
+    // user login validation
+    public static userLoginValidation(data: IUser) {
+        const schema = Joi.object({
+            email: Joi.string().email().required(),
+            password: Joi.string().min(6).required()
+        });
+
+        return schema.validate(data);
+    }
+}
+```
