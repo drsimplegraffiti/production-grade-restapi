@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev": "nodemon src/server.ts",
-    "start": "node dist/server.ts",
-    "seed": "ts-node ./src/utils/seed.ts"
+    "start": "node dist/server.js",
+    "seed": "ts-node ./src/utils/seed.ts",
+    "deploy" : "bash deploy.sh"
   },
   "keywords": [],
   "author": "",
