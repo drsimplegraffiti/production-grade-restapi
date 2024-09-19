@@ -15,7 +15,7 @@ npx prisma init
 This will create a new directory called `prisma` in your project root . Also it will create a new file called `schema.prisma` in the `prisma` directory.
 Then the .env file will be created in the root directory of your project.
 
-Change the provider to `mysql` in the `schema.prisma` file.
+Change the provider to `mysql` in the `schema.prisma` file...
 
 ```prisma
 datasource db {
