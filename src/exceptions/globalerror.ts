@@ -15,7 +15,7 @@ export const errorHandler = (
   const statusCode = error.statusCode || 500;
 
   if (process.env.NODE_ENV === "development") {
-    res.status(statusCode).json({
+    return res.status(statusCode).json({
       status: "error",
       statusCode,
       message: error.message,

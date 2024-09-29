@@ -1,12 +1,13 @@
 import prisma from "../db/connector";
 import PasswordHelper from "./hash";
+import logger from "./logger";
 
 class Seed {
   async seedData() {
     let cycleCount = 11;
 
     const userCount = await prisma.user.count();
-    if(userCount > 0) await prisma.user.deleteMany();
+    if (userCount > 0) await prisma.user.deleteMany();
 
     for (let i = 1; i < cycleCount; i++) {
       await prisma.user.create({
@@ -17,7 +18,7 @@ class Seed {
         },
       });
     }
-    console.log("seeded");
+    logger.info("seeded");
   }
 }
 

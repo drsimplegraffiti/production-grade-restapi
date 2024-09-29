@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import homeRoute from "./health/home.routes";
+import authRoute from "./auth/auth.routes";
 import { errorHandler, notFound } from "./exceptions/globalerror";
 
 class App {
@@ -20,11 +21,12 @@ class App {
     this.app.use(cors());
     this.app.use(helmet());
     this.app.use(express.json());
-    this.app.use(express.urlencoded({ extended: false }));
+    this.app.use(express.urlencoded({ extended: true }));
   }
 
   private routes(): void {
     this.app.use("/", homeRoute);
+    this.app.use("/api/v1/auth", authRoute);
   }
 
   private handleErrors(): void {

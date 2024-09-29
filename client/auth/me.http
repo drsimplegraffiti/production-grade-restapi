@@ -1,0 +1,8 @@
+GET http://localhost:7002/api/v1/auth/me
+Content-Type: application/json
+Authorization: Beare "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI2NzU4MDU1LCJleHAiOjE3MjY3NTg5NTV9.btynoaaS4hIdc4hKQsLgmsceYL9ZPXf4Xu3sVLVQvPY"
+
+{
+    "email":"user3@g.com",
+    "password":"password123"
+}

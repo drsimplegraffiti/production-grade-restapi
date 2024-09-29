@@ -1,4 +1,5 @@
 import app from "./index";
+import logger from "./utils/logger";
 
 class Server{
     private port: number | string;
@@ -9,8 +10,8 @@ class Server{
 
     public start():void {
         app.listen(this.port, ()=> {
-            console.log(`server is running on port ${this.port}`)
-            console.log(process.env.NODE_ENV);
+            logger.info(`server is running on port ${this.port}`)
+            logger.info(process.env.NODE_ENV);
         })
     }
     

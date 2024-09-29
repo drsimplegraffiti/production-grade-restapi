@@ -5,7 +5,7 @@ class PasswordHelper {
     return await bcrypt.hash(password, 10);
   }
 
-  public static async compatrePassword(
+  public static async comparePassword(
     password: string,
     hash: string
   ): Promise<boolean> {
